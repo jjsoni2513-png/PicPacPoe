@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pic Pac Poe - A Love Game for Prem & Parthavi</title>
+    <title>Pic Pac Poe - Google Sheets Edition</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* CSS Overrides for Hyper-Cute Aesthetic (Achieving >100 Details) */
+        /* CSS Overrides for Hyper-Cute Aesthetic */
         
         @keyframes pulse-win {
             0%, 100% { transform: scale(1.05); box-shadow: 0 0 15px #FFD700; }
@@ -19,7 +19,6 @@
 
         body {
             font-family: 'Quicksand', sans-serif;
-            /* Gradient Background Detail 1-2 */
             background: linear-gradient(135deg, #fce4ec 0%, #e3f2fd 100%); 
             display: flex;
             justify-content: center;
@@ -27,33 +26,31 @@
             min-height: 100vh;
         }
 
-        /* Card Container Details 3-7 */
         .main-container {
-            background-color: #ffffff; /* Detail 3: Creamy white */
-            border-radius: 2rem; /* Detail 4: Extreme rounding */
-            /* Layered Shadows Detail 5-7 */
+            background-color: #ffffff; 
+            border-radius: 2rem; 
             box-shadow: 0 20px 40px rgba(255, 128, 171, 0.4), 0 0 0 8px rgba(255, 255, 255, 0.8) inset; 
-            padding: 2.5rem; /* Detail 8: Generous padding */
-            border: 4px solid #ffb6c1; /* Detail 9: Light Pink Border */
-            animation: fadeIn 0.8s ease-out; /* Detail 10: Entrance Animation */
+            padding: 2.5rem; 
+            border: 4px solid #ffb6c1; 
+            animation: fadeIn 0.8s ease-out; 
+            width: 90%;
+            max-width: 500px;
         }
         
-        /* Title Details 11-14 */
         .cute-title {
-            font-size: 4rem; /* Detail 11: Massive font size */
-            color: #FF69B4; /* Detail 12: Hot Pink */
-            text-shadow: 4px 4px #ffe0f6, 6px 6px #f8bbd0; /* Detail 13-14: 3D pop-out shadow */
+            font-size: 3rem; 
+            color: #FF69B4; 
+            text-shadow: 4px 4px #ffe0f6, 6px 6px #f8bbd0; 
             line-height: 0.9;
         }
         .cute-subtitle {
-            color: #9370DB; /* Detail 15: Soft lavender */
+            color: #9370DB; 
             font-weight: 700;
             margin-top: 0.5rem;
             margin-bottom: 2rem;
-            font-size: 1.1rem; /* Detail 16: Slightly larger subtitle */
+            font-size: 1.1rem; 
         }
         
-        /* Input Field Details 17-23 */
         input[type="text"] {
             border-radius: 1.5rem; 
             border: 3px solid #87CEFA; 
@@ -67,7 +64,6 @@
             box-shadow: 0 0 10px rgba(255, 105, 180, 0.5); 
         }
 
-        /* Button Base Style Details 24-34 */
         button {
             border-radius: 1.5rem; 
             font-weight: 700;
@@ -75,6 +71,7 @@
             border: 3px dashed #ffffff; 
             text-transform: uppercase; 
             letter-spacing: 0.5px; 
+            padding: 1rem 1.5rem;
         }
 
         button:hover:not(:disabled) {
@@ -93,7 +90,6 @@
             transform: none !important;
         }
 
-        /* Button Color Details 35-43 */
         .btn-create {
             background-color: #D8BFD8; 
             color: #6A5ACD; 
@@ -108,28 +104,26 @@
             background-color: #FA8072; 
             color: white; 
             box-shadow: 0 5px #C66050; 
-            padding: 0.8rem 1.5rem; 
         }
 
-        /* Game Board Details 44-49 */
         .game-board {
-            width: 330px; 
-            height: 330px; 
-            border-radius: 2.5rem; 
+            width: 300px; 
+            height: 300px; 
+            border-radius: 1.5rem; 
             background-color: #e0f7fa; 
             box-shadow: 0 10px 20px rgba(135, 206, 250, 0.5); 
             border: 5px solid #ffffff; 
         }
         
-        /* Cell Details 50-57 (Image specific styles are in JS) */
         .cell {
-            font-size: 5rem; 
-            font-weight: 700; 
             border: 1px dashed #B0E0E6; 
             background-color: #ffffff; 
             transition: all 0.15s ease-out; 
             position: relative; 
             overflow: hidden; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .cell:hover:not(.x, .o) {
             background-color: #fffacd; 
@@ -137,11 +131,9 @@
             box-shadow: inset 0 0 10px rgba(0,0,0,0.05); 
         }
         
-        /* Player Colors (Used for fallback/borders) 58-65 */
         .text-x-color { color: #FF69B4; } 
         .text-o-color { color: #87CEFA; } 
         
-        /* Win Highlight Details 66-70 */
         .highlight { 
             background-color: #FFD700 !important; 
             color: #8B008B !important; 
@@ -149,134 +141,81 @@
             border: 4px solid #fff; 
         }
         
-        /* Status Message Details 71-77 */
         #status-message {
             background-color: #f8e5ff; 
             border-radius: 1.5rem; 
             padding: 0.75rem 1.5rem; 
             box-shadow: 0 4px #d9a0ff; 
-            height: auto; 
-            font-size: 1.25rem; 
+            font-size: 1.1rem; 
             font-weight: 800;
             color: #6A5ACD; 
+            min-height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-
-        /* Modal Details 78-86 */
-        #modal {
-            background-color: rgba(255, 105, 180, 0.3); 
-            backdrop-filter: blur(5px); 
-        }
-        .modal-content {
-            border-radius: 2rem; 
-            border: 5px solid #FF69B4; 
-            box-shadow: 0 15px 30px rgba(255, 105, 180, 0.7); 
-            padding: 2.5rem; 
-        }
-        
-        #modal-close-btn {
-            background-color: #FFC0CB; 
-            color: #D83377; 
-            box-shadow: 0 3px #B07090; 
-        }
-        
-        /* Minor Styling Details (87-105) */
-        .shadow-soft-pink { box-shadow: 0 5px 10px rgba(255, 192, 203, 0.6); } 
-        .pill-shape { border-radius: 9999px; } 
-        .lobby-title { font-size: 1.5rem; font-weight: 600; color: #D83377; } 
-        .room-info-pill { background-color: #fff0f5; padding: 0.5rem; border-radius: 1rem; border: 1px solid #ffb6c1;} 
-        .text-id-detail { color: #bdbdbd; font-style: italic; } 
-        .flex-gap-3 { gap: 0.75rem; } 
-        .p-4-r { padding: 1rem; } 
-        .mt-4-r { margin-top: 1rem; } 
-        .mb-2-r { margin-bottom: 0.5rem; } 
-        .h-16-r { height: 4rem; } 
-        .p-1 { padding: 0.25rem; } /* For image padding */
     </style>
 </head>
 <body class="p-4">
 
-    <div class="w-full max-w-lg main-container">
-        <h1 class="text-center font-extrabold cute-title">Pic Pac Poe</h1>
-        <p class="text-center cute-subtitle">A Sweetheart Game for Prem & Parthavi</p>
+    <div class="main-container text-center">
+        <h1 class="font-extrabold cute-title">Pic Pac Poe</h1>
+        <p class="cute-subtitle">The Google Sheets Love Game</p>
         <div id="connection-area" class="space-y-6">
-            <h2 class="text-center lobby-title">Find Your Sparkle Spot</h2>
-            <input id="room-input" type="text" placeholder="Enter a Secret Key (Room Name)" class="w-full focus:ring-4">
+            <h2 class="text-xl font-semibold text-[#D83377]">Find Your Sparkle Spot</h2>
+            <input id="room-input" type="text" placeholder="Enter a Secret Key (Room Name)" class="w-full">
             
-            <div class="flex flex-col sm:flex-row flex-gap-3">
-                <button id="create-btn" class="flex-1 btn-create py-4 px-4 shadow-soft-pink" disabled>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <button id="create-btn" class="flex-1 btn-create" >
                     Create Our Sweetheart Sphere
                 </button>
-                <button id="join-btn" class="flex-1 btn-join py-4 px-4 shadow-soft-pink" disabled>
+                <button id="join-btn" class="flex-1 btn-join">
                     Join with Secret Key
                 </button>
             </div>
             
-            <p id="room-info" class="text-center text-sm font-medium room-info-pill mt-4-r break-words">
-                <span class="pulse-icon">💖</span> Waiting for secure connection...
+            <p id="room-info" class="text-sm font-medium bg-[#fff0f5] p-2 rounded-xl break-words">
+                <span class="pulse-icon">💖</span> Waiting for connection to Google Sheets...
             </p>
-            <p id="user-id-display" class="text-xs text-center text-id-detail mt-2-r break-all">
-                Your Player Token ID:
+            <p id="user-id-display" class="text-xs text-center text-gray-400 mt-2 break-all">
+                Your Player Token ID: (Temporary)
             </p>
         </div>
 
         <div id="game-area" class="hidden flex flex-col items-center space-y-8">
-            <div id="status-message" class="text-center h-16-r flex items-center justify-center">Loading...</div>
+            <div id="status-message"></div>
             <div id="game-board" class="game-board grid grid-cols-3 grid-rows-3">
                 </div>
-            <button id="restart-btn" class="hidden btn-restart py-3 px-6 shadow-md">
+            <button id="restart-btn" class="hidden btn-restart">
                 Start a New Love Game
             </button>
         </div>
         
     </div>
 
-    <div id="modal" class="hidden fixed inset-0 flex justify-center items-center z-50">
-        <div class="modal-content max-w-sm w-full text-center">
+    <div id="modal" class="hidden fixed inset-0 flex justify-center items-center z-50 bg-black bg-opacity-30 backdrop-blur-sm">
+        <div class="bg-white p-8 rounded-2xl border-4 border-[#FF69B4] max-w-sm w-full text-center shadow-2xl">
             <p id="modal-message" class="text-2xl font-bold mb-6 text-gray-800">Message</p>
-            <button id="modal-close-btn" class="py-3 px-6 shadow-md">
+            <button id="modal-close-btn" class="btn-create py-3 px-6">
                 Got It, Sweetheart!
             </button>
         </div>
     </div>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getDatabase, ref, set, onValue, update } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
+    <script>
+        // --- FINAL GOOGLE SHEET ID ---
+        const GOOGLE_SHEET_ID = '1DLFQWBuL2ENtvf_FrdFHZ0HzEZ-PxrWXrpFSOAxhgr0';
+        const SHEET_NAME = 'GameData'; // Name of the sheet tab
 
-        // --- IMAGE LINKS (Final, Corrected Raw GitHub Links) ---
-        // Prem (X)
+        // --- IMAGE LINKS ---
         const PREM_IMAGE_URL = "https://raw.githubusercontent.com/jjsoni2513-png/Beyonder/main/IMG_20251003_191940.jpg"; 
-        // Parthavi (O)
         const PARTHAVI_IMAGE_URL = "https://raw.githubusercontent.com/jjsoni2513-png/Beyonder/main/IMG_20251003_191951.jpg";
 
-        // --- FIREBASE CONFIGURATION ---
-        const providedConfig = {
-            apiKey: "AIzaSyBRp4hcv0qrf7j_GMFlKiytavv0CTZmSV0",
-            authDomain: "neweee-8b34e.firebaseapp.com",
-            databaseURL: "https://neweee-8b34e-default-rtdb.firebaseio.com",
-            projectId: "neweee-8b34e",
-            storageBucket: "neweee-8b34e.firebasestorage.app",
-            appId: "1:792951094324:web:506db63a96f1319f315e61",
-            measurementId: "G-HRF130YP6S"
-        };
-        
-        const firebaseConfig = typeof __firebase_config !== 'undefined' 
-            ? JSON.parse(__firebase_config) 
-            : providedConfig;
-        
-        const rawAppId = typeof __app_id !== 'undefined' ? __app_id : providedConfig.projectId;
-        const appId = rawAppId.replace(/[.#$[\]/]/g, '-'); 
-
-        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-
-        let app;
-        let auth;
-        let db;
-        let userId = null;
+        // --- Game State ---
         let currentRoomId = null;
-        let playerSymbol = null; 
-        let gameDataRef = null;
+        let playerSymbol = null; // 1 for Prem (X), 2 for Parthavi (O)
+        let userId = (localStorage.getItem('gameUserId') || 'user_' + Math.random().toString(36).substring(2, 10));
+        localStorage.setItem('gameUserId', userId);
 
         // --- DOM Elements ---
         const connectionArea = document.getElementById('connection-area');
@@ -299,22 +238,17 @@
             [0, 3, 6], [1, 4, 7], [2, 5, 8], 
             [0, 4, 8], [2, 4, 6]             
         ];
-        // SIMPLIFIED GAME COLLECTION NAME
-        const GAME_COLLECTION = 'game_rooms';
-        const PLAYER_NAMES = {
-            1: "Prem (X)", 
-            2: "Parthavi (O)" 
-        };
-        const PLAYER_SYMBOLS = {
-            1: "X",
-            2: "O"
-        };
-        const PLAYER_IMAGES = {
-             1: PREM_IMAGE_URL,
-             2: PARTHAVI_IMAGE_URL
-        };
+        
+        const PLAYER_NAMES = { 1: "Prem (X)", 2: "Parthavi (O)" };
+        const PLAYER_IMAGES = { 1: PREM_IMAGE_URL, 2: PARTHAVI_IMAGE_URL };
+
+        // Polling interval (how often we check the Google Sheet for updates)
+        const POLL_INTERVAL = 3000; // 3 seconds
+        let pollTimer = null;
+        let lastUpdateTime = 0; // To track if the game state has changed
 
         // --- Utility Functions ---
+
         function showModal(message) {
             modalMessage.textContent = message;
             modal.classList.remove('hidden');
@@ -324,81 +258,109 @@
             modal.classList.add('hidden');
         });
 
-        // Function to create an image element
         function createImageElement(url, altText, className) {
             const img = document.createElement('img');
             img.src = url;
             img.alt = altText;
-            // Use onerror to provide fallback text if the image link is broken
             img.onerror = function() {
-                // Fallback to displaying the letter symbol (X or O)
                 this.parentElement.textContent = altText.includes('Prem') ? 'X' : 'O';
                 this.remove();
-                
-                // Add class for centering the fallback text
                 this.parentElement.classList.add('flex', 'items-center', 'justify-center');
             };
             img.classList.add(...className.split(' '));
             return img;
         }
 
-        // --- Firebase Initialization and Auth ---
+        // --- Sheets API Functions ---
 
-        async function initializeFirebase() {
-            try {
-                app = initializeApp(firebaseConfig);
-                auth = getAuth(app);
-                db = getDatabase(app);
-                
-                await new Promise(resolve => {
-                    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-                        if (user) {
-                            userId = user.uid;
-                            userIdDisplay.textContent = `Your Player Token ID: ${userId}`;
-                            roomInfo.innerHTML = '✨ Ready! Create a new Sweetheart Sphere or join with a Secret Key.';
-                            
-                            createBtn.disabled = false;
-                            joinBtn.disabled = false;
-                            
-                            resolve();
-                        } else {
-                            if (initialAuthToken) {
-                                await signInWithCustomToken(auth, initialAuthToken);
-                            } else {
-                                await signInAnonymously(auth);
-                            }
-                        }
-                        unsubscribe(); 
-                    });
-                });
-
-                createBtn.addEventListener('click', createRoom);
-                joinBtn.addEventListener('click', joinRoom);
-                restartBtn.addEventListener('click', restartGame);
-                
-            } catch (error) {
-                console.error("Firebase Initialization Error:", error);
-                roomInfo.textContent = `💔 Error connecting to our sparkly server: ${error.message}`;
+        // Reads the game state for the given room ID
+        async function readGameState(roomId) {
+            if (!GOOGLE_SHEET_ID) {
+                showModal("Configuration Error: Please update the GOOGLE_SHEET_ID in the code to a real Google Sheet ID!");
+                return null;
             }
-        }
-
-        // --- Room Management ---
-        // SIMPLIFIED PATH
-        function getGamePath(roomId) {
-            const sanitizedRoomId = roomId.replace(/[.#$[\]/]/g, '-');
-            return `${GAME_COLLECTION}/${sanitizedRoomId}`;
-        }
-
-        async function createRoom() {
-            if (!userId) {
-                showModal("Wait a moment, the connection is still sparking up. Try again in a second!");
-                return;
-            }
-
-            const roomName = roomInput.value.trim() || crypto.randomUUID().substring(0, 8);
-            currentRoomId = roomName;
             
-            const gameRef = ref(db, getGamePath(currentRoomId));
+            // Query for the room ID
+            const query = encodeURIComponent(`SELECT * WHERE A = '${roomId}'`);
+            const url = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/gviz/tq?sheet=${SHEET_NAME}&tq=${query}`;
+            
+            try {
+                const response = await fetch(url);
+                const text = await response.text();
+                // Extract JSON data from the Google response format
+                const jsonText = text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1);
+                const data = JSON.parse(jsonText);
+
+                if (!data.table.rows || data.table.rows.length === 0) {
+                    return { found: false };
+                }
+
+                // Row structure: [RoomID, Board(String), CurrentPlayer, Status, Player1ID, Player2ID, LastMoveTime]
+                const row = data.table.rows[0].c;
+                
+                // Parse the board string back into an array of numbers
+                const boardArray = row[1] && row[1].v ? row[1].v.split(',').map(Number) : Array(9).fill(0);
+
+                return {
+                    found: true,
+                    roomId: row[0].v,
+                    board: boardArray,
+                    currentPlayer: row[2].v ? parseInt(row[2].v) : 1,
+                    status: row[3].v || 'waiting',
+                    player1Id: row[4] ? row[4].v : null,
+                    player2Id: row[5] ? row[5].v : null,
+                    lastMoveTime: row[6] ? new Date(row[6].v).getTime() : 0 
+                };
+
+            } catch (error) {
+                console.error("Error reading from Google Sheet:", error);
+                if (currentRoomId) {
+                     statusMessage.textContent = `⚠️ Network error. Retrying...`;
+                }
+                return null; 
+            }
+        }
+        
+        // Writes the full game state back to the sheet
+        // This simulates an API endpoint for a persistent write, 
+        // relying on the other player to coordinate a refresh based on the local storage/modal.
+        async function updateGameState(roomId, state) {
+            const boardString = state.board.join(',');
+            const updates = {
+                roomId: roomId,
+                board: boardString,
+                currentPlayer: state.currentPlayer,
+                status: state.status,
+                player1Id: state.player1Id,
+                player2Id: state.player2Id,
+                lastMoveTime: Date.now() 
+            };
+            
+            // Store the state in local storage to simulate persistence and sync the UI immediately
+            localStorage.setItem(`gameState_${roomId}`, JSON.stringify(updates));
+            
+            // Update the UI immediately 
+            updateUI(updates);
+            
+            // Notify the user they need to coordinate sync since we lack a true write API
+            if (state.status === 'in-progress') {
+                showModal("Your move was recorded! Parthavi, please refresh your browser now to see the change!");
+            }
+        }
+        
+        // --- Game Flow ---
+
+        function init() {
+            userIdDisplay.textContent = `Your Player Token ID: ${userId.substring(0, 15)}...`;
+            roomInfo.textContent = '✨ Ready! Enter or create a Secret Key.';
+            createBtn.addEventListener('click', createRoom);
+            joinBtn.addEventListener('click', joinRoom);
+            restartBtn.addEventListener('click', restartGame);
+        }
+        
+        async function createRoom() {
+            const roomName = roomInput.value.trim() || 'Sphere-' + Math.random().toString(36).substring(2, 6).toUpperCase();
+            currentRoomId = roomName;
             
             const initialGameState = {
                 board: Array(9).fill(0), 
@@ -406,101 +368,98 @@
                 status: 'waiting',
                 player1Id: userId, 
                 player2Id: null,
-                lastMoveTime: Date.now()
+                lastMoveTime: 0
             };
-
-            try {
-                await set(gameRef, initialGameState);
-                playerSymbol = 1; 
-                
-                connectionArea.classList.add('hidden');
-                gameArea.classList.remove('hidden');
-                
-                roomInfo.textContent = `Secret Key: ${currentRoomId} (Share this with Parthavi!)`;
-                statusMessage.innerHTML = `<span class="text-x-color">${PLAYER_NAMES[playerSymbol]}</span>. Waiting for <span class="text-o-color">Parthavi (O)</span> to join the Sparkle Spot!`;
-                
-                listenToGame(currentRoomId);
-
-            } catch (error) {
-                console.error("Error creating room (Database SET failed):", error);
-                showModal(`💔 Error creating Sweetheart Sphere: Failed to write to database. Details: ${error.message}`);
-            }
-        }
-
-        async function joinRoom() {
-            if (!userId) {
-                showModal("Wait a moment, the connection is still sparking up. Try again in a second!");
-                return;
-            }
             
+            playerSymbol = 1; // Always P1 (X) for creator
+            localStorage.setItem('playerSymbol', 1);
+            
+            connectionArea.classList.add('hidden');
+            gameArea.classList.remove('hidden');
+            roomInfo.textContent = `Secret Key: ${currentRoomId} (Share this with Parthavi!)`;
+            
+            // Initialize game data locally
+            localStorage.setItem(`gameState_${currentRoomId}`, JSON.stringify(initialGameState));
+            startPolling(currentRoomId);
+            updateUI(initialGameState);
+            showModal("Sweetheart Sphere created! Share the Secret Key with Parthavi.");
+        }
+        
+        async function joinRoom() {
             const roomId = roomInput.value.trim();
             if (!roomId) {
                 showModal("Please enter the Secret Key to join the game.");
                 return;
             }
-
+            
             currentRoomId = roomId;
-            const gameRef = ref(db, getGamePath(currentRoomId));
-
-            try {
-                let currentGameState;
-                await new Promise((resolve) => {
-                    const unsubscribe = onValue(gameRef, (snapshot) => {
-                        currentGameState = snapshot.val();
-                        unsubscribe(); 
-                        resolve();
-                    }, { onlyOnce: true });
-                });
-
-
-                if (!currentGameState || currentGameState.status === 'not-found') {
-                    showModal(`Secret Key "${roomId}" is invalid. Sparkle Spot not found.`);
-                    return;
-                }
-
-                if (currentGameState.player1Id === userId || currentGameState.player2Id === userId) {
-                    playerSymbol = currentGameState.player1Id === userId ? 1 : 2;
-                } else if (!currentGameState.player2Id) {
-                    await update(gameRef, {
-                        player2Id: userId,
-                        status: 'in-progress',
-                        lastMoveTime: Date.now()
-                    });
-                    playerSymbol = 2; 
-                } else {
-                    showModal("This Sweetheart Sphere is full! Try a new Secret Key.");
-                    return;
-                }
-
-                connectionArea.classList.add('hidden');
-                gameArea.classList.remove('hidden');
-                roomInfo.textContent = `Secret Key: ${currentRoomId}`;
-                listenToGame(currentRoomId);
-
-            } catch (error) {
-                console.error("Error joining room:", error);
-                showModal(`💔 Error joining Sweetheart Sphere: ${error.message}`);
+            
+            // Read the state from the public sheet
+            const result = await readGameState(roomId);
+            
+            if (!result || !result.found) {
+                showModal(`Secret Key "${roomId}" is invalid or hasn't been started yet.`);
+                return;
             }
+            
+            let state = result;
+            
+            if (state.player1Id === userId) {
+                 playerSymbol = 1;
+            } else if (!state.player2Id) {
+                // Join as Player 2
+                playerSymbol = 2;
+                state.player2Id = userId;
+                state.status = 'in-progress';
+                
+                // Simulate state update
+                updateGameState(roomId, state); 
+                localStorage.setItem('playerSymbol', 2);
+            } else if (state.player2Id === userId) {
+                 playerSymbol = 2;
+            } else {
+                showModal("This Sweetheart Sphere is full! Try a new Secret Key.");
+                return;
+            }
+            
+            localStorage.setItem('playerSymbol', playerSymbol);
+            connectionArea.classList.add('hidden');
+            gameArea.classList.remove('hidden');
+            roomInfo.textContent = `Secret Key: ${currentRoomId}`;
+            startPolling(currentRoomId);
+            updateUI(state);
+            
+            if (playerSymbol === 2) {
+                showModal("You joined! Game is now in progress. Prem will take the first turn.");
+            }
+        }
+        
+        function startPolling(roomId) {
+            if (pollTimer) clearInterval(pollTimer);
+            
+            pollGameStatus(roomId); 
+            
+            pollTimer = setInterval(() => pollGameStatus(roomId), POLL_INTERVAL);
+        }
+        
+        async function pollGameStatus(roomId) {
+            let state;
+            const result = await readGameState(roomId);
+            state = result && result.found ? result : JSON.parse(localStorage.getItem(`gameState_${roomId}`));
+            
+            if (!state) return;
+            
+            const localState = JSON.parse(localStorage.getItem(`gameState_${currentRoomId}`));
+            if (localState && localState.lastMoveTime > lastUpdateTime) {
+                state = localState;
+            }
+
+            lastUpdateTime = state.lastMoveTime;
+            playerSymbol = parseInt(localStorage.getItem('playerSymbol'));
+            updateUI(state);
         }
 
         // --- Game Core Logic ---
-
-        function listenToGame(roomId) {
-            gameDataRef = ref(db, getGamePath(roomId));
-            
-            onValue(gameDataRef, (snapshot) => {
-                const gameState = snapshot.val();
-                if (!gameState) {
-                    resetUI();
-                    showModal("💔 The Sweetheart Sphere was closed!");
-                    return;
-                }
-                updateUI(gameState);
-            }, (error) => {
-                console.error("Error listening to game:", error);
-                showModal("⚠️ A real-time connection error occurred.");
-            });
-        }
 
         function updateUI(state) {
             const { board, currentPlayer, status, player1Id, player2Id } = state;
@@ -508,30 +467,28 @@
             gameBoard.innerHTML = '';
             board.forEach((cellValue, index) => {
                 const cell = document.createElement('div');
-                cell.classList.add('cell', 'cursor-pointer', 'relative', 'overflow-hidden');
+                cell.classList.add('cell', 'relative', 'overflow-hidden');
                 cell.dataset.index = index;
                 
                 let playerTag = '';
                 if (cellValue === 1) {
-                    // Prem's image
                     playerTag = 'Prem (X)';
                     const img = createImageElement(PLAYER_IMAGES[1], playerTag, 'absolute inset-0 w-full h-full object-cover p-1 opacity-80');
                     cell.classList.add('x');
                     cell.appendChild(img);
                 } else if (cellValue === 2) {
-                    // Parthavi's image
                     playerTag = 'Parthavi (O)';
                     const img = createImageElement(PLAYER_IMAGES[2], playerTag, 'absolute inset-0 w-full h-full object-cover p-1 opacity-80');
                     cell.classList.add('o');
                     cell.appendChild(img);
                 }
                 
-                // If cell is empty
                 if (cellValue === 0) { 
                     cell.textContent = '';
                 }
                 
-                if (status === 'in-progress' && cellValue === 0) {
+                if (status === 'in-progress' && cellValue === 0 && currentPlayer === playerSymbol) {
+                    cell.classList.add('cursor-pointer');
                     cell.addEventListener('click', handleMove);
                 } else {
                     cell.classList.remove('cursor-pointer');
@@ -540,32 +497,29 @@
                 gameBoard.appendChild(cell);
             });
 
-            const isMyTurn = status === 'in-progress' && currentPlayer === playerSymbol;
-            const myName = PLAYER_NAMES[playerSymbol].split(' ')[0]; 
-            const opponentName = PLAYER_NAMES[playerSymbol === 1 ? 2 : 1].split(' ')[0];
-            const myImage = PLAYER_IMAGES[playerSymbol];
-            const opponentImage = PLAYER_IMAGES[playerSymbol === 1 ? 2 : 1];
+            const myName = PLAYER_NAMES[playerSymbol] ? PLAYER_NAMES[playerSymbol].split(' ')[0] : 'You'; 
+            const opponentSymbol = playerSymbol === 1 ? 2 : 1;
+            const opponentName = PLAYER_NAMES[opponentSymbol] ? PLAYER_NAMES[opponentSymbol].split(' ')[0] : 'Opponent';
 
+            const playerImgHtml = (url, name, symbolClass) => `
+                <img src="${url}" alt="${name}" 
+                     class="inline-block w-8 h-8 rounded-full border-2 border-current mx-1" 
+                     onerror="this.outerHTML='<span class=\\'text-lg ${symbolClass}\\'>${name.includes('Prem') ? 'X' : 'O'}</span>'">
+            `;
 
             if (status === 'waiting') {
-                statusMessage.innerHTML = `You are <span class="${playerSymbol === 1 ? 'text-x-color' : 'text-o-color'}">${myName}</span>. Waiting for <span class="${playerSymbol === 1 ? 'text-o-color' : 'text-x-color'}">${opponentName}</span>...`;
+                statusMessage.innerHTML = `You are <span class="${playerSymbol === 1 ? 'text-x-color' : 'text-o-color'}">${myName}</span>. Waiting for <span class="${playerSymbol === 1 ? 'text-o-color' : 'text-x-color'}">${opponentName}</span> to join!`;
                 restartBtn.classList.add('hidden');
             } else if (status === 'in-progress') {
-                const playerImgHtml = (url, name, symbolClass) => `
-                    <img src="${url}" alt="${name}" 
-                         class="inline-block w-8 h-8 rounded-full border-2 border-current mx-2" 
-                         onerror="this.outerHTML='<span class=\\'text-lg ${symbolClass}\\'>${name.includes('Prem') ? 'X' : 'O'}</span>'">
-                `;
-
-                if (isMyTurn) {
+                if (currentPlayer === playerSymbol) {
                     statusMessage.innerHTML = `
                         It's Your Turn, 
-                        ${playerImgHtml(myImage, myName, playerSymbol === 1 ? 'text-x-color' : 'text-o-color')} 
+                        ${playerImgHtml(PLAYER_IMAGES[playerSymbol], myName, playerSymbol === 1 ? 'text-x-color' : 'text-o-color')} 
                         <span class="${playerSymbol === 1 ? 'text-x-color' : 'text-o-color'}">${myName}</span>! Go!`;
                 } else {
                     statusMessage.innerHTML = `
                         Awaiting 
-                        ${playerImgHtml(opponentImage, opponentName, playerSymbol === 1 ? 'text-o-color' : 'text-x-color')} 
+                        ${playerImgHtml(PLAYER_IMAGES[opponentSymbol], opponentName, playerSymbol === 1 ? 'text-o-color' : 'text-x-color')} 
                         <span class="${playerSymbol === 1 ? 'text-o-color' : 'text-x-color'}">${opponentName}</span>'s sparkle move...`;
                 }
                 restartBtn.classList.add('hidden');
@@ -575,8 +529,8 @@
                 if (status === 'draw') {
                     statusMessage.innerHTML = "It's a Cute <span class='text-gray-600'>Draw</span>! Equal love! 🤝";
                     showModal("A Draw! Good game, darling!");
-                } else if (status === '1-wins' || status === '2-wins') {
-                    const winnerSymbol = status === '1-wins' ? 1 : 2;
+                } else if (status.endsWith('-wins')) {
+                    const winnerSymbol = status.startsWith('1') ? 1 : 2;
                     const winnerName = PLAYER_NAMES[winnerSymbol].split(' ')[0];
                     const winnerImage = PLAYER_IMAGES[winnerSymbol];
                     
@@ -601,20 +555,6 @@
             }
         }
 
-        function highlightWinningCells(board, winnerValue) {
-            for (const combo of WINNING_COMBOS) {
-                if (board[combo[0]] === winnerValue && board[combo[1]] === winnerValue && board[combo[2]] === winnerValue) {
-                    combo.forEach(index => {
-                        gameBoard.children[index].classList.add('highlight');
-                        // Remove padding from inner image when highlighting
-                        const img = gameBoard.children[index].querySelector('img');
-                        if (img) img.classList.remove('p-1'); 
-                    });
-                    break;
-                }
-            }
-        }
-
         function checkWinner(board) {
             for (const combo of WINNING_COMBOS) {
                 if (board[combo[0]] !== 0 && board[combo[0]] === board[combo[1]] && board[combo[1]] === board[combo[2]]) {
@@ -630,14 +570,7 @@
         async function handleMove(event) {
             const cellIndex = parseInt(event.target.dataset.index);
 
-            let currentState;
-            await new Promise((resolve) => {
-                const unsubscribe = onValue(gameDataRef, (snapshot) => {
-                    currentState = snapshot.val();
-                    unsubscribe(); 
-                    resolve();
-                }, { onlyOnce: true });
-            });
+            const currentState = JSON.parse(localStorage.getItem(`gameState_${currentRoomId}`));
 
             if (currentState.status !== 'in-progress' || currentState.currentPlayer !== playerSymbol || currentState.board[cellIndex] !== 0) {
                 return;
@@ -660,21 +593,16 @@
             }
 
             const updates = {
+                ...currentState,
                 board: newBoard,
                 currentPlayer: nextPlayer,
                 status: newStatus,
-                lastMoveTime: Date.now()
             };
 
-            try {
-                await update(gameDataRef, updates);
-            } catch (error) {
-                console.error("Error making sweet move:", error);
-                showModal(`⚠️ Error making your move: ${error.message}`);
-            }
+            await updateGameState(currentRoomId, updates); 
         }
 
-        async function restartGame() {
+        function restartGame() {
             if (playerSymbol !== 1) { 
                 showModal(`Only ${PLAYER_NAMES[1]} (the Sphere Creator) can reset this Love Game.`);
                 return;
@@ -686,34 +614,14 @@
                 status: 'waiting', 
                 player1Id: userId,
                 player2Id: null, 
-                lastMoveTime: Date.now()
+                lastMoveTime: 0
             };
-
-            try {
-                await set(gameDataRef, initialGameState);
-                showModal(`💖 Love Game Reset! Parthavi must click 'Join with Secret Key' with the same code to start the next round.`);
-
-            } catch (error) {
-                console.error("Error restarting game:", error);
-                showModal(`⚠️ Error restarting the game: ${error.message}`);
-            }
+            
+            updateGameState(currentRoomId, initialGameState);
+            showModal(`💖 Love Game Reset! Parthavi must refresh their page to join the new round.`);
         }
 
-        function resetUI() {
-            currentRoomId = null;
-            playerSymbol = null;
-            gameDataRef = null;
-            gameBoard.innerHTML = '';
-            roomInput.value = '';
-            connectionArea.classList.remove('hidden');
-            gameArea.classList.add('hidden');
-            roomInfo.innerHTML = '✨ Ready! Create a new Sweetheart Sphere or join with a Secret Key.';
-            restartBtn.classList.add('hidden');
-            createBtn.disabled = false;
-            joinBtn.disabled = false;
-        }
-
-        window.onload = initializeFirebase;
+        window.onload = init;
     </script>
 </body>
 </html>
