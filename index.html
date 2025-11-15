@@ -299,7 +299,8 @@
             [0, 3, 6], [1, 4, 7], [2, 5, 8], 
             [0, 4, 8], [2, 4, 6]             
         ];
-        const GAME_COLLECTION = 'tictactoe_love_games';
+        // SIMPLIFIED GAME COLLECTION NAME
+        const GAME_COLLECTION = 'game_rooms';
         const PLAYER_NAMES = {
             1: "Prem (X)", 
             2: "Parthavi (O)" 
@@ -382,10 +383,9 @@
         }
 
         // --- Room Management ---
-
+        // SIMPLIFIED PATH
         function getGamePath(roomId) {
             const sanitizedRoomId = roomId.replace(/[.#$[\]/]/g, '-');
-            // Using Realtime Database, so the path structure is slightly simpler than Firestore's full path
             return `${GAME_COLLECTION}/${sanitizedRoomId}`;
         }
 
